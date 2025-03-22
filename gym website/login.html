@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login | Muscle Matrix</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Welcome to Muscle Matrix</h2>
+        
+        <div class="form-container">
+            <h3>Login</h3>
+            <form action="submit-login.php" method="POST" id="login-form">
+                <div class="input-group">
+                    <label for="username">Username or Email</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn">Login</button>
+            </form>
+            
+            <div class="links">
+                <p><a href="signup.html">Create an account</a></p>
+                <p><a href="forgot-password.html">Forgot Password?</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="login.js"></script>
+</body>
+</html>

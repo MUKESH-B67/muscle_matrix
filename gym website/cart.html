@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="cart.css">
+</head>
+<body>
+
+    <header>
+        <a href="gym.html">Back to Home</a>
+    </header>
+
+    <main>
+        <h2>Your Cart</h2>
+        <div id="cart-items"></div>
+        <h3>Total: $<span id="total-price">0.00</span></h3>
+
+        <h3>Payment Options</h3>
+        <button onclick="checkout('GPay')">GPay</button>
+        <button onclick="checkout('Credit Card')">Credit Card</button>
+        <button onclick="checkout('Debit Card')">Debit Card</button>
+        <button onclick="checkout('COD')">Cash on Delivery</button>
+    </main>
+
+    <script>
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        let cartContainer = document.getElementById("cart-items");
+        let totalPrice = 0;
+
+        function displayCart() {
+            cartContainer.innerHTML = "";
+            totalPrice = 0;
+            
+            cart.forEach((item, index) => {
+                let div = document.createElement("div");
+                div.innerHTML = `
+                    <img src="${item.img}" width="50">
+                    <p>${item.name}</p>
+                    <p>$${item.price} x ${item.quantity}</p>
+                    <button onclick="removeItem(${index})">Remove</button>
+                `;
+                cartContainer.appendChild(div);
+                totalPrice += item.price * item.quantity;
+            });
+
+            document.getElementById("total-price").innerText = totalPrice.toFixed(2);
+        }
+
+        function removeItem(index) {
+            cart.splice(index, 1);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            displayCart();
+        }
+
+        function checkout(method) {
+            alert(`Payment Successful with ${method}!`);
+            localStorage.removeItem("cart");
+            window.location.href = "musclemartix.html";
+        }
+
+        displayCart();
+    </script>
+
+</body>
+</html>
